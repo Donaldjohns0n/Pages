@@ -168,6 +168,8 @@ All entries follow this structure:
 6. **Error Handling**: Report errors through the standard logging system
 7. **Documentation**: Refer to `/docs/Pages_Blueprint.md` for framework overview
 8. **Configuration**: Check `/registry/master_manifest.yaml` for current settings
+9. **Meta-Organization Tracker**: Reference `/docs/meta-organization-tracker.md` for dimensional taxonomy, checkpoints, and cross-reference obligations.
+10. **Dimensional Checkpoints**: Execute templates in `/registry/templates/dimensional-checkpoints.md` before and after every agent interaction.
 
 ---
 

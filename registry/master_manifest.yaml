@@ -20,6 +20,8 @@ registry:
     contexts: "/registry/contexts/"
     workflows: "/registry/workflows/"
     templates: "/registry/templates/"
+    meta_tracker: "/docs/meta-organization-tracker.md"
+    dimensional_checkpoints: "/registry/templates/dimensional-checkpoints.md"
 
   # Registry Capabilities
   capabilities:
@@ -28,6 +30,8 @@ registry:
     workflow_orchestration: true
     meta_logging: true
     performance_tracking: true
+    dimensional_awareness: true
+    meta_cross_reference: true
 
 # Agent Registry Schema
 agents:
@@ -91,6 +95,8 @@ workflows:
         outputs: "object"  # Expected outputs
         dependencies: "array"  # Dependencies on other steps
         timeout: "integer"  # Step timeout in seconds
+        dimensional_checkpoints: "array"  # Pre, mid, and post checkpoints referencing tracker
+        cross_reference_links: "array"  # Links to tracker and templates
     coordination:
       execution_order: "array"  # Execution sequence
       parallel_groups: "array"  # Steps that can run in parallel
@@ -123,6 +129,13 @@ system:
     context_sync_interval: 60  # seconds
     agent_discovery_interval: 120  # seconds
     health_check_interval: 180  # seconds
+
+# Dimensional Awareness
+dimensional_awareness:
+  tracker: "/docs/meta-organization-tracker.md"
+  pre_interaction_prompt: "/registry/templates/dimensional-checkpoints.md#pre-interaction-dimensional-check"
+  post_interaction_prompt: "/registry/templates/dimensional-checkpoints.md#post-interaction-dimensional-check"
+  prompt_standard: "/registry/templates/prompt/meta-organizational-standard.md"
 
 # Integration Endpoints
 integration:
