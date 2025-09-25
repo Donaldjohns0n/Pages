@@ -98,6 +98,21 @@ All entries follow this structure:
 - Framework ready to accept agent registrations
 - Orchestration capabilities fully functional
 
+### 2025-09-24T18:00:00Z [INFO] [REGISTRY] [SYSTEM] - Tool atomic purpose registry published
+- Created `/docs/tool-atomic-purpose-registry.md` with full tool catalog and decision matrices
+- Updated master manifest paths to include tool registry reference
+- Added context instances for awareness, engagement tracking, and optimization
+
+### 2025-09-24T18:00:00Z [INFO] [WORKFLOW] [SYSTEM] - Tool awareness and analytics workflows registered
+- `/registry/workflows/tool_awareness.yaml` enforces pre-task reminders and acknowledgements
+- `/registry/workflows/tool_analytics.yaml` delivers utilization metrics and heat maps
+- `/registry/workflows/tool_optimization_review.yaml` governs optimization and pruning approvals
+
+### 2025-09-24T18:00:00Z [INFO] [CONTEXT] [SYSTEM] - Tool engagement monitoring contexts activated
+- `/registry/contexts/tool_awareness.yaml` broadcasts reminders and capability announcements
+- `/registry/contexts/tool_engagement_tracking.yaml` captures invocation rationale and outcomes
+- `/registry/contexts/tool_optimization.yaml` stores optimization thresholds and recommendations
+
 ---
 
 ## Agent Registration Log

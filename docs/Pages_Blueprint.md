@@ -25,11 +25,18 @@ To create an intelligent orchestration framework that enables:
 
 ### Workflow Steps:
 1. Task analysis and agent capability matching
-2. Context preparation and distribution
-3. Agent deployment and coordination
-4. Progress monitoring and adaptive adjustments
-5. Result aggregation and quality validation
-6. Meta-analysis and system learning
+2. Tool awareness broadcast and reminder acknowledgement
+3. Context preparation and distribution
+4. Agent deployment and coordination
+5. Progress monitoring and adaptive adjustments
+6. Result aggregation and quality validation
+7. Meta-analysis and system learning
+
+### Tool Awareness Integration
+- **Registry Reference**: `/docs/tool-atomic-purpose-registry.md` is the canonical source for tool purposes, decision matrices, and optimization protocols.
+- **Workflow Enforcement**: `/registry/workflows/tool_awareness.yaml` triggers at session start, workflow initialization, and context switches to broadcast active tools.
+- **Engagement Logging**: Agents must write tool usage entries to `/registry/contexts/tool_engagement_tracking.yaml` for analytics and audits.
+- **Optimization Feedback Loop**: Recommendations from `/registry/contexts/tool_optimization.yaml` inform retrospectives and pruning decisions managed by `/registry/workflows/tool_optimization_review.yaml`.
 
 ## Registry and Meta-Log Links
 

@@ -15,6 +15,7 @@ registry:
   # Core Infrastructure Paths
   paths:
     blueprint: "/docs/Pages_Blueprint.md"
+    tool_registry: "/docs/tool-atomic-purpose-registry.md"
     meta_log: "/meta-log.md"
     agents: "/registry/agents/"
     contexts: "/registry/contexts/"
@@ -76,6 +77,16 @@ contexts:
       updated: "timestamp"
       expires: "timestamp"  # Optional expiration
       tags: "array"
+  instances:
+    - id: "tool_awareness"
+      file: "/registry/contexts/tool_awareness.yaml"
+      description: "Persistent tool reminder cadence and broadcasts."
+    - id: "tool_engagement_tracking"
+      file: "/registry/contexts/tool_engagement_tracking.yaml"
+      description: "Ledger for tool invocation analytics and audit logs."
+    - id: "tool_optimization"
+      file: "/registry/contexts/tool_optimization.yaml"
+      description: "Optimization thresholds and pruning recommendations."
 
 # Workflow Registry Schema
 workflows:
@@ -104,6 +115,16 @@ workflows:
       started: "timestamp"
       completed: "timestamp"
       tags: "array"
+  registered_workflows:
+    - id: "tool_awareness"
+      file: "/registry/workflows/tool_awareness.yaml"
+      purpose: "Broadcast tool availability reminders and log acknowledgements."
+    - id: "tool_analytics"
+      file: "/registry/workflows/tool_analytics.yaml"
+      purpose: "Generate utilization analytics, effectiveness scores, and heat maps."
+    - id: "tool_optimization_review"
+      file: "/registry/workflows/tool_optimization_review.yaml"
+      purpose: "Govern optimization and pruning decision cycles."
 
 # System Configuration
 system:

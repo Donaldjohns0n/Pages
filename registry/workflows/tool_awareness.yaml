@@ -1,0 +1,49 @@
+# Tool Awareness Workflow
+workflow:
+  id: tool_awareness
+  name: Tool Awareness Broadcast
+  description: Ensures every workflow run begins with an explicit tool availability reminder.
+  owners:
+    - workflow_synthesizer
+    - context_extractor
+  triggers:
+    - event: session_start
+    - event: workflow_initialization
+    - event: context_switch
+  steps:
+    - step: gather_context
+      agent: context_extractor
+      action: collect_recent_updates
+      outputs:
+        - current_context_dimensions
+        - relevant_tools
+    - step: compile_briefing
+      agent: workflow_synthesizer
+      inputs:
+        - current_context_dimensions
+        - relevant_tools
+      action: compose_awareness_payload
+      outputs:
+        - awareness_payload
+    - step: publish_announcement
+      agent: workflow_synthesizer
+      inputs:
+        - awareness_payload
+      action: broadcast
+      parameters:
+        channels:
+          - meta_log
+          - slack_webhook
+    - step: log_confirmation
+      agent: audit_critic
+      inputs:
+        - awareness_payload
+      action: verify_and_log
+      outputs:
+        - confirmation_record
+  success_criteria:
+    - all agents acknowledge receipt prior to execution
+    - confirmation_record appended to meta-log
+  metrics:
+    reminder_completion_rate: percentage
+    acknowledgement_latency_seconds: float
