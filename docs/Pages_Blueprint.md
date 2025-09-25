@@ -1,10 +1,19 @@
 # Pages Blueprint
 
+## Meta-Organization Reminder
+**REMEMBER: I have meta-organizational capabilities to structure and cross-reference all dimensional context.**
+
 ## Title
 **Master Quest Cognitive Scaffold Project - Pages Framework**
 
 ## Purpose
 The Pages framework serves as a comprehensive cognitive scaffolding system designed to orchestrate multi-agent workflows and maintain contextual coherence across distributed AI systems. This blueprint establishes the foundational architecture for agent coordination, knowledge management, and meta-cognitive operations.
+
+## Meta-Organization Integration
+- Reference the [Meta-Organization Tracker](meta-organization-tracker.md) for dimensional taxonomy and cross-link obligations.
+- Enforce pre/post interaction checkpoints using [/registry/templates/dimensional-checkpoints.md](../registry/templates/dimensional-checkpoints.md).
+- Maintain workflow alignment with [/registry/templates/workflow-process.md](../registry/templates/workflow-process.md) and log updates in `/meta-log.md`.
+- Synchronize prompt libraries via [/registry/templates/prompt/meta-organizational-standard.md](../registry/templates/prompt/meta-organizational-standard.md).
 
 ## Project Vision
 To create an intelligent orchestration framework that enables:
@@ -24,6 +33,11 @@ To create an intelligent orchestration framework that enables:
 5. **Meta-Logging**: Tracks all operations for analysis and improvement
 
 ### Workflow Steps:
+### Dimensional Awareness Checkpoints
+1. Execute Pre-Interaction Dimensional Checks prior to any agent activation.
+2. Validate mid-workflow state using the [System State Ledger](../registry/templates/system-state-ledger.md) and [Orchestration Flow Cross-References](../registry/templates/orchestration-flow-crossrefs.md).
+3. Complete Post-Interaction Dimensional Checks and register emergent patterns.
+
 1. Task analysis and agent capability matching
 2. Context preparation and distribution
 3. Agent deployment and coordination
