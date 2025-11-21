@@ -1,0 +1,88 @@
+# Repository Tracking System Configuration
+
+version: "0.2.0"
+description: "Configuration for monitoring open source accounting tools and automation enablers."
+
+tracking_targets:
+  - category: "Accounting Frameworks"
+    repositories:
+      - name: "ERPNext"
+        url: "https://github.com/frappe/erpnext"
+        metrics:
+          watch: true
+          issues: true
+          releases: true
+          contributors: true
+        evaluation_rubric:
+          automation_scope: "broad"
+          compliance_alignment: "medium"
+          integration_complexity: "moderate"
+      - name: "Odoo"
+        url: "https://github.com/odoo/odoo"
+        metrics:
+          watch: true
+          issues: true
+          releases: true
+          localization: true
+        evaluation_rubric:
+          automation_scope: "broad"
+          compliance_alignment: "medium"
+          integration_complexity: "high"
+      - name: "LedgerSMB"
+        url: "https://github.com/ledgersmb/LedgerSMB"
+        metrics:
+          watch: true
+          security: true
+          releases: true
+        evaluation_rubric:
+          automation_scope: "focused"
+          compliance_alignment: "high"
+          integration_complexity: "moderate"
+
+  - category: "Automation Utilities"
+    repositories:
+      - name: "Akaunting"
+        url: "https://github.com/akaunting/akaunting"
+        metrics:
+          watch: true
+          issues: true
+          releases: true
+        evaluation_rubric:
+          automation_scope: "focused"
+          compliance_alignment: "medium"
+          integration_complexity: "low"
+      - name: "Firefly-III"
+        url: "https://github.com/firefly-iii/firefly-iii"
+        metrics:
+          watch: true
+          community: true
+        evaluation_rubric:
+          automation_scope: "niche"
+          compliance_alignment: "low"
+          integration_complexity: "low"
+      - name: "Frappe-Insights"
+        url: "https://github.com/frappe/insights"
+        metrics:
+          watch: true
+          releases: true
+          roadmap: true
+        evaluation_rubric:
+          automation_scope: "analytics"
+          compliance_alignment: "medium"
+          integration_complexity: "moderate"
+
+scoring:
+  freshness_half_life_days: 45
+  weightings:
+    community: 0.25
+    release_cadence: 0.2
+    documentation: 0.15
+    security: 0.2
+    integration_tooling: 0.2
+
+reporting:
+  cadence: "bi-weekly"
+  output_files:
+    - "repository_analysis.md"
+    - "open_source_accounting_frameworks.md"
+  notification_channel: "repository.alerts"

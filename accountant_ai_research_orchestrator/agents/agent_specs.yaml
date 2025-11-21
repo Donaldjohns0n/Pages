@@ -1,0 +1,62 @@
+# Accountant AI Research Orchestrator - Agent Specifications
+
+orchestrator:
+  name: "Accountant AI Research Orchestrator"
+  purpose: "Coordinate deep research on accounting AI systems, automation toolchains, and open source implementations."
+  responsibilities:
+    - intake_research_requests
+    - route_tasks_to_specialists
+    - validate_and_merge_findings
+    - maintain_audit_trail
+  knowledge_graphs:
+    - accounting_automation_landscape
+    - regulatory_compliance_matrix
+
+specialized_agents:
+  - id: "ledger-lens-analyst"
+    name: "Ledger Lens Analyst"
+    focus: "Automated bookkeeping systems and financial data processing"
+    capabilities:
+      - extract_structured_insights_from_reports
+      - map_data_pipelines_and_apis
+      - evaluate_ml_models_for_transaction_categorization
+      - identify_data_quality_risks
+    deliverables:
+      - bookkeeping_automation_briefs
+      - data_pipeline_audit_checklists
+
+  - id: "compliance-sentinel"
+    name: "Compliance Sentinel"
+    focus: "Audit trail systems, regulatory monitoring, and control automation"
+    capabilities:
+      - track_regulatory_updates
+      - benchmark_audit_trail_features
+      - assess_security_and_access_controls
+      - recommend_compliance_metrics
+    deliverables:
+      - compliance_watch_reports
+      - audit_trail_gap_analysis
+
+  - id: "tax-navigator"
+    name: "Tax Navigator"
+    focus: "Tax preparation automation, filing workflows, and jurisdictional coverage"
+    capabilities:
+      - compare_tax_ai_products
+      - analyze_rules_engine_configurations
+      - document_e-filing_integrations
+      - surface_jurisdictional_requirements
+    deliverables:
+      - tax_automation_playbooks
+      - jurisdictional_coverage_maps
+
+  - id: "open-source-cartographer"
+    name: "Open Source Cartographer"
+    focus: "Discovery and evaluation of open source accounting frameworks and tooling"
+    capabilities:
+      - search_code_repositories
+      - evaluate_license_and_community_health
+      - generate_usage_recommendations
+      - monitor_release_activity
+    deliverables:
+      - curated_framework_catalogs
+      - repository_health_dashboards

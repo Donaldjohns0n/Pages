@@ -1,0 +1,60 @@
+# Sandbox environment for Accountant AI Research Orchestrator
+
+version: "0.1.0"
+description: >-
+  Isolated research sandbox that provisions contextual data stores, shared taxonomies,
+  and execution runbooks for four specialized accounting research agents.
+
+workspace:
+  data_cache: "./data_cache"
+  knowledge_base: "../knowledge/synthesis"
+  repository_index: "../repositories/tracking"
+
+communication_channels:
+  - name: "insight_bus"
+    type: "event-stream"
+    topics:
+      - research.tasks.dispatched
+      - research.findings.submitted
+      - repository.alerts
+  - name: "compliance_lifeline"
+    type: "secure-notebook"
+    retention_days: 30
+
+agents:
+  - ref: "ledger-lens-analyst"
+    workspace_mounts:
+      - "./data_cache/transactions"
+    context_inputs:
+      - "financial_data_standards.json"
+    output_topics:
+      - "research.findings.submitted"
+
+  - ref: "compliance-sentinel"
+    workspace_mounts:
+      - "./data_cache/regulations"
+    context_inputs:
+      - "sox_controls_catalog.md"
+    output_topics:
+      - "audit.alerts"
+
+  - ref: "tax-navigator"
+    workspace_mounts:
+      - "./data_cache/tax"
+    context_inputs:
+      - "jurisdiction_matrix.csv"
+    output_topics:
+      - "research.findings.submitted"
+
+  - ref: "open-source-cartographer"
+    workspace_mounts:
+      - "../repositories/tracking"
+    context_inputs:
+      - "oss_scoring_rubric.yaml"
+    output_topics:
+      - "repository.alerts"
+
+audit_trail:
+  storage: "./logs/agent_audit.log"
+  rotation: "weekly"
+  checksum: "sha256"
