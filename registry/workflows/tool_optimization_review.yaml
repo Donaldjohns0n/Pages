@@ -1,0 +1,57 @@
+# Tool Optimization Review Workflow
+workflow:
+  id: tool_optimization_review
+  name: Tool Optimization Review
+  description: Governs approval of optimization recommendations and pruning proposals.
+  owners:
+    - audit_critic
+    - prompt_librarian
+  triggers:
+    - event: optimization_alert
+    - event: pruning_proposal
+  steps:
+    - step: intake_recommendation
+      agent: audit_critic
+      action: validate_recommendation
+      inputs:
+        - recommendation_record
+      outputs:
+        - validation_status
+        - required_evidence
+    - step: gather_evidence
+      agent: prompt_librarian
+      when: validation_status == "requires_evidence"
+      action: collect_supporting_materials
+      outputs:
+        - evidence_package
+    - step: decision_huddle
+      agent: workflow_synthesizer
+      inputs:
+        - recommendation_record
+      optional_inputs:
+        - evidence_package
+      action: coordinate_decision
+      outputs:
+        - decision_outcome
+        - action_items
+    - step: publish_result
+      agent: slack_webhook
+      inputs:
+        - decision_outcome
+        - action_items
+      action: notify_stakeholders
+      parameters:
+        channels:
+          - meta_log
+          - human_ops
+    - step: implement_changes
+      agent: context_extractor
+      inputs:
+        - action_items
+      action: update_contexts
+      target:
+        - registry/contexts/tool_awareness.yaml
+        - registry/contexts/tool_optimization.yaml
+  success_criteria:
+    - Decision recorded within 48 hours of recommendation
+    - Updated contexts reflect approved changes

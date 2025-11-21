@@ -1,0 +1,72 @@
+# Tool Awareness Context Configuration
+context:
+  id: tool_awareness
+  name: Tool Awareness Protocol
+  type: shared
+  scope: global
+  version: 1.0
+  owners:
+    - workflow_synthesizer
+    - audit_critic
+  description: |
+    Defines reminder cadence, context triggers, and broadcast payloads ensuring every agent
+    acknowledges available tools before undertaking tasks.
+
+  reminder_cadence:
+    session_start:
+      enabled: true
+      broadcast_channel: meta_log
+      payload: "Announce tool roster, decision matrix highlights, and recent optimization alerts."
+    context_switch:
+      enabled: true
+      broadcast_channel: meta_log
+      payload: "Summarize relevant tools mapped to new context dimensions."
+    periodic:
+      interval_minutes: 30
+      broadcast_channel: meta_log
+      payload: "Reinforce underutilized tool opportunities and pending audit notices."
+
+  context_dimension_mapping:
+    temporal:
+      pre_task:
+        reminders:
+          - context_extractor
+          - prompt_librarian
+      in_flight:
+        reminders:
+          - workflow_synthesizer
+          - audit_critic
+      post_task:
+        reminders:
+          - audit_critic
+          - slack_webhook
+          - container.make_pr
+    role_based:
+      analyzer:
+        highlight:
+          - context_extractor
+          - prompt_librarian
+      executor:
+        highlight:
+          - shell_exec
+          - workflow_synthesizer
+      coordinator:
+        highlight:
+          - audit_critic
+          - slack_webhook
+
+  announcement_format:
+    template: |
+      [Tool Awareness] Active Tools: {{tool_list}} | Key Triggers: {{trigger_summary}} | Optimization Alerts: {{alerts}}
+    required_fields:
+      - tool_list
+      - trigger_summary
+      - alerts
+
+  integration_hooks:
+    - name: blueprint_step
+      description: "Inject awareness step into agent blueprints before execution directives."
+      target: docs/Pages_Blueprint.md
+    - name: workflow_initialization
+      description: "Workflow synthesizer publishes tool roster at run start."
+      target: registry/workflows/tool_awareness.yaml

@@ -1,0 +1,56 @@
+# Tool Engagement Tracking Context
+context:
+  id: tool_engagement_tracking
+  name: Tool Engagement Ledger
+  type: shared
+  scope: workflow
+  version: 1.0
+  description: |
+    Captures granular records for each tool invocation including rationale, outcomes, and
+    audit metadata to support analytics and continuous improvement.
+
+  data_schema:
+    entry:
+      timestamp: timestamp
+      workflow_id: string
+      agent_id: string
+      tool_id: string
+      atomic_purpose: string
+      decision_matrix_code: string
+      rationale_summary: string
+      outcome:
+        status: [success, warning, failure]
+        artifacts: array
+        notes: string
+      audit:
+        reviewer: string
+        score: float
+        comments: string
+
+  storage:
+    persistence: meta_log_append
+    retention_days: 45
+    privacy:
+      redact_sensitive_fields: true
+      encryption: optional
+
+  analytics_hooks:
+    - name: frequency_counter
+      description: "Aggregate tool usage counts per agent and workflow."
+      target: registry/workflows/tool_analytics.yaml
+    - name: effectiveness_scoring
+      description: "Update rolling effectiveness metrics after each invocation."
+      target: registry/workflows/tool_analytics.yaml
+
+  reporting:
+    dashboards:
+      - name: heat_map
+        description: "Visualize tool usage across context dimensions."
+        refresh_interval_minutes: 60
+      - name: optimization_feed
+        description: "List underutilized or overused tools with recommendations."
+        refresh_interval_minutes: 120
+
+  governance:
+    quality_gate: audit_critic
+    escalation_contact: workflow_synthesizer

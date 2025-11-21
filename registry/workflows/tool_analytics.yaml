@@ -1,0 +1,55 @@
+# Tool Analytics Workflow
+workflow:
+  id: tool_analytics
+  name: Tool Engagement Analytics
+  description: Computes utilization metrics, effectiveness scores, and heat maps for tool usage.
+  owners:
+    - audit_critic
+    - workflow_synthesizer
+  schedule:
+    frequency_minutes: 60
+  data_sources:
+    - registry/contexts/tool_engagement_tracking.yaml
+    - registry/contexts/tool_optimization.yaml
+  steps:
+    - step: ingest_logs
+      agent: audit_critic
+      action: parse_engagement_entries
+      outputs:
+        - normalized_entries
+    - step: compute_metrics
+      agent: workflow_synthesizer
+      inputs:
+        - normalized_entries
+      action: calculate_statistics
+      outputs:
+        - utilization_summary
+        - effectiveness_scores
+    - step: generate_heat_map
+      agent: workflow_synthesizer
+      inputs:
+        - normalized_entries
+      action: build_heat_map
+      outputs:
+        - heat_map_artifact
+    - step: publish_reports
+      agent: slack_webhook
+      inputs:
+        - utilization_summary
+        - effectiveness_scores
+        - heat_map_artifact
+      action: dispatch_updates
+      parameters:
+        channels:
+          - meta_log
+          - human_ops
+    - step: update_optimization_context
+      agent: audit_critic
+      inputs:
+        - utilization_summary
+        - effectiveness_scores
+      action: refresh_thresholds
+      target: registry/contexts/tool_optimization.yaml
+  success_criteria:
+    - Analytics reports published each cycle
+    - Optimization context updated without validation errors

@@ -1,0 +1,49 @@
+# Tool Optimization Context
+context:
+  id: tool_optimization
+  name: Tool Optimization Insights
+  type: shared
+  scope: global
+  version: 1.0
+  description: |
+    Houses recommendations, pruning suggestions, and alert thresholds that drive
+    optimization of the tool ecosystem.
+
+  thresholds:
+    unnecessary_usage:
+      deviation_score: 0.6
+      alert_channel: meta_log
+      remediation_owner: audit_critic
+    underutilization:
+      frequency_percentile: 25
+      success_rate_minimum: 0.8
+      awareness_campaign_owner: prompt_librarian
+
+  recommendation_schema:
+    id: string
+    created_at: timestamp
+    tool_id: string
+    recommendation_type: [reduce_usage, increase_awareness, retire_tool]
+    summary: string
+    rationale: string
+    proposed_actions: array
+    follow_up_owner: string
+    due_date: timestamp
+
+  pruning_protocol:
+    review_interval_days: 30
+    required_evidence:
+      - effectiveness_trend
+      - redundancy_analysis
+      - stakeholder_feedback
+    approval_workflow: registry/workflows/tool_optimization_review.yaml
+
+  notifications:
+    broadcast_channels:
+      - slack_webhook
+      - meta_log
+    templates:
+      optimization_alert: |
+        [Tool Optimization] {{tool_id}} flagged for {{recommendation_type}}. Rationale: {{rationale}}.
+      pruning_proposal: |
+        [Tool Pruning] Proposal submitted for {{tool_id}}. Review owner: {{follow_up_owner}}. Due: {{due_date}}.
